@@ -15,82 +15,78 @@ global variable, but without the downsides.
 
 ## STEP 1 : Make constructor private, so no one can instantiate using constructor.
 
-public MyClass {
-	private MyClass() {}
-}
+	public MyClass {
+		private MyClass() {}
+	}
 
 ## STEP 2 : Make static method getInstance which returns the Object by calling MyClass.getInstance()
 
-public MyClass {
-	public static MyClass getInstance() { // its a class method
+	public MyClass {
+		public static MyClass getInstance() { // its a class method
+		}
 	}
-}
 
 ## STEP 3: Add Static variable and Method as below.
 
-public class Singleton {
-	private static Singleton uniqueInstance;
-	
-	private Singleton() {}
-	
-	public static Singleton getInstance() {
-		if (uniqueInstance == null) {
-		uniqueInstance = new Singleton();
+	public class Singleton {
+		private static Singleton uniqueInstance;
+		
+		private Singleton() {}
+		
+		public static Singleton getInstance() {
+			if (uniqueInstance == null) {
+			uniqueInstance = new Singleton();
+			}
+			return uniqueInstance;
 		}
-		return uniqueInstance;
-	}
-	
-}	
+		
+	}	
 ## STEP 4 : If you have multiple thread is accessing getInstance method
 
-# Add synchronized keyword in the method as below.
+### Add synchronized keyword in the method as below.
 
-public static synchronized Singleton getInstance()
+	public static synchronized Singleton getInstance()
 
-# OR ELSE
+### OR ELSE
 
 a. create object instance eagerly rather than lazily with static variable initialized while declaring it.
 
-private static Singleton uniqueInstance = new Singleton();
+	private static Singleton uniqueInstance = new Singleton();
 
 b. No need for null check in getInstance method. 
 
-public static Singleton getInstance() {
-return uniqueInstance;
-} 	
+	public static Singleton getInstance() {
+		return uniqueInstance;
+	} 	
 
 ## OO Patterns
-Observer - defines a one-to-many
-dependency between objects so that
-when one object changes state, all its
-dependents are notified and updated
-automatically
 
-Decorator - Attach additional
-responsibilities to an object dynamically.
-Decorators provide a flexible
-alternative to subclassing for extending
+Observer - defines a one-to-many dependency between objects so that
+when one object changes state, all its dependents are notified and updated automatically
+
+Decorator - Attach additional responsibilities to an object dynamically.
+Decorators provide a flexible alternative to subclassing for extending
 functionality.
 
-Abstract Factory - Provide an
-interface for creating families of
-related or depedent objects without
-specifying their concrete classes.
+Abstract Factory - Provide an interface for creating families of
+related or depedent objects without specifying their concrete classes.
 
-Factory Method - Define an
-interface for creating an object, but
-let subclasses decide which class to
-instantiate. Factory Method lets
+Factory Method - Define an interface for creating an object, but
+let subclasses decide which class to instantiate. Factory Method lets
 a class defer instantiation
 
 ## OO principles
 
 Encapsulate what varies.
+
 Favor composition over inheritance.
-Program to interfaces, not
-implementations.
+
+Program to interfaces, not implementations.
+
 Strive for loosely coupled designs between objects that interact.
+
 Classes should be open for extension but closed for modification.
+
 Depend on abstractions. Do not depend on concrete classes.	
 	
 	
